@@ -1,0 +1,425 @@
+body{
+    font-family: 'Inter', sans-serif;
+    max-width: 100vw;
+    background-color: #f0ecece5;
+}
+
+header{
+    background: rgb(2,0,36);
+    background: linear-gradient(170deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 46%, rgba(0,212,255,1) 100%);
+    height: 80px;
+}
+
+.logo{
+    width: 60px;
+    margin-left: 12px;
+    margin-top: 11px;
+    border-radius: 20px;
+}
+
+figcaption{
+    display: none;
+}
+
+.menuUl{
+    font-size: 12px;
+    display: block;
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 23px;
+    height: 2px;
+    padding-top: 10px;
+    overflow: hidden;
+    background-image: repeating-linear-gradient(#271e60, #271e60 2px, transparent 2px, transparent 5px);
+}
+
+.carousel{
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    height: 150px;
+    transition:  1s;
+}
+
+.carousel > img{
+    max-height: fit-content;
+    max-width: 100vw;
+}
+
+.divTitle{
+    display: flex;
+    justify-content: left;
+    margin-top: 15px;
+    margin-left: 30px;
+    margin-bottom: 13px;
+    color: #2e245e;
+}
+
+.cardProd{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: justify;
+    margin: 50px 30px;
+    padding: 10px;
+    border: solid #f5f5f5 2px;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+.cardProd:hover{
+    box-shadow: 3px 3px 13px 1px rgb(146 146 146);
+}
+
+.cardProdOne{
+    margin-top: 10px;
+}
+
+.classTag{
+    background-color: rgba(9,9,121,1);
+    color: #f5f5f5;
+    font-size: 11px;
+    font-weight: bold;
+    max-width: 100px;
+    display: inline-block;
+    position: absolute;
+    padding: 3px 4px 3px 4px;    
+    left: 11vw;
+}
+
+.productImg{
+    width: 175px;
+}
+
+.prodName{
+    font-weight: bold;
+    line-height: 20px;
+}
+
+.prodDescr{
+    padding-top: 15px;
+    padding-bottom: 20px;
+    font-size: 15px;
+    line-height: 17px;
+    color: #828282;
+}
+
+.price{
+    font-weight: bold;
+    color: #2e245e;
+    padding-bottom: 10px;
+}
+
+.addToCart{
+    color: #828282;
+    padding-bottom: 10px;
+    background-color: #fff;
+    border: none;
+    font-size: 18px;
+    text-decoration: underline;
+}
+
+.search{
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 32px 5px 32px;
+}
+
+.searchTxt{
+    border: none;
+    background-color: #fff;
+    width: -webkit-fill-available;
+    width: -moz-available;
+    width: fill-available;
+    height: 30px;
+    padding-left: 8px;
+    border-top-left-radius: 6px;
+}
+
+.searchButton{
+    color: #fff;
+    background-color: rgba(9,9,121,1);
+    border: none;
+    border-top-right-radius: 6px;
+}
+
+.shopItems{
+    display: flex;
+    flex-direction: column;
+    border: solid rgba(9,9,121,1) 1px;
+    background-color: #fff;
+    align-items: center;
+    margin: 0px 30px 50px 30px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.cartTitle{
+    background-color: rgba(9,9,121,1);
+    color: #fff;
+    width: 100%;
+    height: 36px;
+    text-align: center;
+    padding-top: 18px;
+    font-weight: bold;
+}
+
+.cart{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 10px;
+    height: 350px;
+    width: -webkit-fill-available;
+    width: -moz-available;
+    width: fit-content;
+}
+
+.cart > label{
+    color: #828282;
+    padding-top: 7px;
+    font-size: 15px;
+    text-align: center;
+}
+
+#prodList div {
+    border: none;
+    background-color: #fff;
+    margin-bottom: 2px;
+    width: -webkit-fill-available;
+    width: -moz-available;
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#prodList li{
+    width: -webkit-fill-available;
+    width: -moz-available;
+    width: fit-content;
+    margin: 0px;
+    margin-top: 15px;
+    list-style: none;
+    background-color: #f5f5f5;
+}
+
+#prodList .cardProd{
+    margin: 0px;
+}
+
+#prodList label {
+    display: none;
+}
+
+#prodList img {
+    width: 50px;
+    margin-right: 3px;
+}
+
+#prodList h3 {
+    font-size: 13px;
+    max-width: 135px;
+    text-align: start;
+    padding-left: 5px;
+    background-color: #fff;
+}
+
+#prodList span {
+    padding-left: 60px;
+    padding-top: 2px;
+    font-size: 13px;
+    color: #2e245e;
+}
+
+#prodList button {
+    margin-left: 20px;
+    border: none;
+    background-color: #fff;
+    color: #828282;
+}
+
+@media (min-width: 800px){
+
+.logo{
+    margin-left: 4%;
+}
+
+.logo:hover{
+    cursor: pointer;
+}
+
+.menuUl{
+    font-size: 13px;
+    color: #f5f5f5;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    position:absolute;
+    right: 15px;
+    width: 370px;
+    padding-top: 0px;
+    height: 16px;
+    overflow:visible;
+    background-image: none;
+}
+
+.submenu{
+    display: none;
+}
+
+.menuUl > li:hover{
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.menuUl li:hover > .submenu{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: absolute;
+    border-radius: 4px;
+    padding: 5px 2px;
+    background: rgba(10, 10, 114, 0.7);
+}
+
+
+.submenuLi{
+    line-height: 16px;
+    border-radius: 4px;
+    padding: 2px 8px;
+    margin-bottom: 2px;
+    transition: all 0.2s ease-in-out;
+}
+
+.submenuLi:hover{
+    font-weight: 900;
+    background: #271e60;
+}
+
+.clusterSection{
+    display: flex;
+}
+
+.mainSection{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    max-width: 70%;
+    margin-bottom: 40px;
+}
+
+.carousel > img{
+    max-width: fit-content;
+}
+
+.divTitle{
+    position: absolute;
+    left: 0px;
+    margin-left: 4%;
+    margin-top: 20px;
+}
+
+h2{
+    font-size: 22px;
+    margin: 25px 0px;
+}
+
+#divCards {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 35px;
+}
+
+.cardProd{
+    max-width: 194px;
+    margin: 50px 0px 0px 15px;
+    justify-content: space-between;
+}
+
+.labelDiv{
+    width: -webkit-fill-available;
+    width: -moz-available;
+    width: fill-available;
+}
+
+.classTag{
+    position: initial;
+}
+
+.productImg{
+    width: 120px;
+}
+
+.search{
+    max-width: inherit;
+    margin: 0px;
+}
+
+.searchTxt{
+    width: unset;
+    margin-bottom: 10px;
+    max-width: 240%;
+}
+
+.searchButton{
+    margin-bottom: 10px;
+}
+
+.searchButton:hover{
+    cursor: pointer;
+}
+
+.shopCart{
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+    max-width: 30%;
+    margin-top: 50px;
+    position:absolute;
+    right: 4vw
+}
+
+.shopItems{
+    height: 42%;
+    margin: 0px;
+    max-width: 260px;
+}
+
+.addToCart:hover{
+    color: #000000;
+    cursor: pointer;
+}
+
+.noProdsFilter{
+    color: #2e245e;
+    position: absolute;
+    left: 4vw;
+    top: 37vw
+}
+
+.removeAll{
+    position: absolute;
+    bottom: 5vh;
+    left: -1vw;
+    font-weight: 500;
+    font-size: 15px;
+    text-decoration: underline;
+}
+
+.removeFromCart{
+    text-decoration: underline;
+}
+
+.removeFromCart:hover{
+    cursor: pointer;
+    color: #000 !important;
+}
+
+.removeAll:hover{
+    cursor: pointer;
+    color: #000 !important;
+}
+
+}
