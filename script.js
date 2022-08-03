@@ -5,7 +5,7 @@ const data = [
     "img_src": "./images/antiexplosivo.jpg",
     "name": "Motor Elétrico à Prova de Explosão W22Xdb IE2 5.5 kW 2P 50Hz",
     "description": "Representa o que há de mais moderno para o acionamento de equipamentos em ambientes de atmosferas explosivas. Assegura altos níveis de rendimento, baixa manutenção e segurança.",
-    "value": "R$2300.00"
+    "value": "2300.00"
     },
 
     {
@@ -14,7 +14,7 @@ const data = [
     "img_src": "./images/bombamonobloco.jpg",
     "name":"W22 Bomba Monobloco JM IR3 Premium 60cv 60Hz",
     "description": "Os motores W22 Bomba Monobloco JM possuem curta extensão do eixo, o que limita a vibração e o movimento radial, e, portanto, proporciona maior vida útil da vedação.",
-    "value": "R$1900.00"
+    "value": "1900.00"
     },
 
     {
@@ -23,7 +23,7 @@ const data = [
     "img_src": "./images/MKT_WMO_EU_IMAGE_3PHASE_W22_RAL5009_143_B35T_NEMAPREMIUM_1200Wx1200H.jpg",
     "name": "W22 NEMA Premium Efficiency 1 HP 4P 60Hz Com Pés",
     "description": "Carcaça de ferro fundido, flexibilidade de forma construtiva, pés maciços e inteiriços e níveis de ruído e temperatura de operação reduzidos.",
-    "value": "R$1200.00"
+    "value": "1200.00"
     },
 
     {
@@ -32,7 +32,7 @@ const data = [
     "img_src": "./images/WDC_Disjuntor_ACW101_1200Wx1200H.jpg",
     "name": "Disjuntor ACW101H-ETS40-3",
     "description": "Os disjuntores em caixa moldada da linha ACW são equipamentos para proteção de circuitos elétricos, manobra e proteção de motores.",
-    "value": "R$135.00"
+    "value": "135.00"
     },
 
     {
@@ -41,7 +41,7 @@ const data = [
     "img_src": "./images/camerainterna.jpg",
     "name": "Câmera Interna Wi-fi WHOME",
     "description": "Monitore o que acontece dentro dos espaços internos e proteja o seu patrimônio e quem você ama. Com campo de visão panorâmica de 355° e visão angular de 100°.",
-    "value": "R$240.00"
+    "value": "240.00"
 },
 
 {
@@ -50,7 +50,7 @@ const data = [
     "img_src": "./images/interruptorrefinatto.webp",
     "name": "Interruptor Refinatto LED Dourado",
     "description": "A Refinatto é uma linha modular feita para inspirar a sua natureza, com a funcionalidade e exclusividade que você precisa e merece.",
-    "value": "R$70.00"
+    "value": "70.00"
 }
 ]
 
@@ -112,7 +112,7 @@ function createProductCard(data){
         
         const priceSpan = document.createElement("span");
         priceSpan.classList.add("price");
-        priceSpan.innerText = data[i].value;
+        priceSpan.innerText = "R$"+data[i].value.replace(".", ",");
         prodCard.appendChild(priceSpan);
         
         const addToCartButton = document.createElement("button");
@@ -157,7 +157,9 @@ function createShopCartItem(product){
     shopCartElemDiv.appendChild(prodTitle);
     
     const price = document.createElement("span");
-    price.innerText = data[parseInt(product-1)].value;
+    price.classList.add("cartPrice")
+    price.value = data[parseInt(product-1)].value
+    price.innerText = "R$"+price.value.replace(".", ",")
     shopCartElemDiv.appendChild(price);
     
     const removeButton = document.createElement("button");
@@ -167,15 +169,16 @@ function createShopCartItem(product){
     removeButton.addEventListener("click", (event) => {
         let product = event.target.parentNode.parentNode;
         removeFromCart(product.id);
-        cartSub()
+        cartSub(price.value)
         cartRmAllVerifier()
     });
     shopCartElemDiv.appendChild(removeButton);    
     
     
     addToCartVerifier()
-    cartAdd()
+    cartAdd(parseInt(price.value))
 }
+
 
 function addToCartVerifier(){
     if(!document.querySelector(".cartBottomDiv")){
@@ -194,10 +197,13 @@ function addToCartVerifier(){
             for(let i=0; i<list.length; i++){
                 shopCartUl.removeChild(list[i].parentNode)
             }
-
+            
             const cartCounter = document.querySelector(".cartCounter")
-            cartCounter.value = 0
+            const totalValue = document.querySelector(".totalValue")
 
+            cartCounter.value = 0
+            totalValue.value = 0
+            
             cartRmAllVerifier()
         })
         
@@ -205,65 +211,101 @@ function addToCartVerifier(){
         counterDiv.classList.add("counterDiv")
         
         const prodsQt = document.createElement("span")
+        prodsQt.classList.add("prodsQt")
         prodsQt.innerText = "Qtd. produtos: "
         const cartCounter = document.createElement("span")
         cartCounter.classList.add("cartCounter")
         cartCounter.value = 0
-        cartCounter.innerText = `${cartCounter.value}`
         counterDiv.appendChild(prodsQt)
         counterDiv.appendChild(cartCounter)
+
+        const totalDiv = document.createElement("div")
+        totalDiv.classList.add("totalDiv")
+
+        const total = document.createElement("span")
+        total.classList.add("total")
+        total.innerText = "Total: "
+        const totalValue = document.createElement("span")
+        totalValue.classList.add("totalValue")
+        totalValue.value = 0
+        totalDiv.appendChild(total)
+        totalDiv.appendChild(totalValue)
         
         cartBottomDiv.appendChild(remAllButton)
         cartBottomDiv.appendChild(counterDiv)
+        cartBottomDiv.appendChild(totalDiv)
         shopCartUl.appendChild(cartBottomDiv)
         
     }else{
-
+        
         const emptyCart = document.querySelector("#emptyCart")
         const addItems = document.querySelector("#adicioneItens")
         const remAllButton = document.querySelector(".removeAll")
         const counterDiv = document.querySelector(".counterDiv")
-
+        const total = document.querySelector(".total")
+        const totalValue = document.querySelector(".totalValue")
+        
         emptyCart.style.display = "none";
         addItems.style.display = "none";
         remAllButton.style.display = "inline";
         counterDiv.style.display = "inline"
+        total.style.display = "inline"
+        totalValue.style.display = "inline"
     }
 }
 
+
 function cartRmAllVerifier(){
-    const cartBottomDiv = document.querySelector(".cartBottomDiv");
     const remAllButton = document.querySelector(".removeAll")
     const counterDiv = document.querySelector(".counterDiv")
     const cartCounter = document.querySelector(".cartCounter")
     const emptyCart = document.querySelector("#emptyCart")
     const addItems = document.querySelector("#adicioneItens")
+    const total = document.querySelector(".total")
+    const totalValue = document.querySelector(".totalValue")
     
     if(cartCounter.value >= 1){
         emptyCart.style.display = "none";
         addItems.style.display = "none";
         remAllButton.style.display = "inline";
         counterDiv.style.display = "inline";
+        total.style.display = "inline"
+        totalValue.style.display = "inline"
         
     }else{
         emptyCart.style.display = "inline";
         addItems.style.display = "inline";
         remAllButton.style.display = "none";
         counterDiv.style.display = "none";
+        total.style.display = "none"
+        totalValue.style.display = "none"
     }
 }
 
-function cartAdd(){
+
+function cartAdd(value){
     const cartCounter = document.querySelector(".cartCounter")
+    const totalValue = document.querySelector(".totalValue")
+
     cartCounter.value += 1
     cartCounter.innerText = `${cartCounter.value}`
+
+    totalValue.value += value
+    totalValue.innerText = `R$${totalValue.value.toFixed(2).replace(".", ",")}`
 }
 
- function cartSub(){
+
+function cartSub(value){
     const cartCounter = document.querySelector(".cartCounter")
+    const totalValue = document.querySelector(".totalValue")
+    
     cartCounter.value -= 1
     cartCounter.innerText = `${cartCounter.value}`
- }
+
+    totalValue.value -= value
+    totalValue.innerText = `R$${totalValue.value.toFixed(2).replace(".", ",")}`
+}
+
 
 function removeFromCart(event){
     let removable = document.getElementById(`${event}`);
@@ -273,7 +315,7 @@ function removeFromCart(event){
 }
 
 
-function filteredProds(){
+function searchProds(){
     const search = document.querySelector(".searchTxt")
     
     search.addEventListener("keyup", () => {
@@ -283,7 +325,34 @@ function filteredProds(){
         )
         divCards.innerHTML = "" 
         createProductCard(filteredData)
+        
+        if(filteredData.length === 0){
+            const noProdsFilter = document.createElement("h3")
+            noProdsFilter.innerText = "Nenhum produto foi encontrado"
+            noProdsFilter.classList.add("noProdsFilter")
+            divCards.appendChild(noProdsFilter)
+        }
+        
+        if(search.value === ""){
+            divCards.innerHTML = "" 
+            createProductCard(data)
+        }
+    })
+    
+}
 
+
+function searchProds(){
+    const search = document.querySelector(".searchTxt")
+    
+    search.addEventListener("keyup", () => {
+        const filteredData = data.filter((product) => 
+        product.name.toLocaleLowerCase().includes(search.value.toLocaleLowerCase()) 
+        || product.label.toLocaleLowerCase().includes(search.value.toLocaleLowerCase())
+        )
+        divCards.innerHTML = "" 
+        createProductCard(filteredData)
+        
         if(filteredData.length === 0){
             const noProdsFilter = document.createElement("h3")
             noProdsFilter.innerText = "Nenhum produto foi encontrado"
@@ -299,4 +368,24 @@ function filteredProds(){
     
 }
 
-filteredProds()
+searchProds()
+
+
+// function filteredProds(input) {
+//     console.log("passei")
+//     const filteredData = data.filter((product) => 
+//     product.label.toLocaleLowerCase().includes(input)
+//     )
+//     divCards.innerHTML = "" 
+//     createProductCard(filteredData)
+// }
+
+// function menuFilter(){
+//     const displayTitle = document.querySelector(".displayTitle")
+
+//     const motors = document.querySelector(".motors")
+//     motors.addEventListener("click", filteredProds("motores"))
+// }
+
+// menuFilter()
+
