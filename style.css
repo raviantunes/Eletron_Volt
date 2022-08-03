@@ -272,9 +272,13 @@ figcaption{
 
 .cartCounter, .totalValue {
     padding-left: 5px;
-    padding-top: 2px;
+    padding-top: 5px;
     font-size: 13px;
     color: #2e245e;
+}
+
+.totalValue {
+
 }
 
 

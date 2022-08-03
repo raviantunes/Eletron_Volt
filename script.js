@@ -212,7 +212,7 @@ function addToCartVerifier(){
         
         const prodsQt = document.createElement("span")
         prodsQt.classList.add("prodsQt")
-        prodsQt.innerText = "Qtd. produtos: "
+        prodsQt.innerText = "Qtd. produtos:"
         const cartCounter = document.createElement("span")
         cartCounter.classList.add("cartCounter")
         cartCounter.value = 0
